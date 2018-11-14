@@ -22,7 +22,7 @@
     <% end %>
 
     <form action="/attempt_edit_category/<%= @category[:category_id] %>" method="post">
-      <label for="category_name">Category Name:
+      <label>Category Name:
         <input type="text" name="category_name" value="<%= @category_name %>">
       </label>
       <button type="submit">Submit Change</button>

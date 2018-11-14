@@ -1,16 +1,11 @@
-/* ALPHABETICAL (first word only, so shared selectors are not ordered) EXCEPT MEDIA SELECTORS */
+/* ordered alphabetically (first word only, so shared selectors are not ordered) */
 
-.content td img {
-    width: 25px;
-    position: static;
+a:visited {
+  color: blue;
 }
 
 .abs_container {
   position: relative;
-}
-
-a:visited {
-  color: blue;
 }
 
 .bottom {
@@ -37,7 +32,7 @@ a:visited {
   margin: 43px 10px 0 0;
 }
 
-.contact_info label {
+.contact_info label, .edit_info label {
   display: block;
   margin-bottom: 35px;
   text-align: right;
@@ -50,6 +45,11 @@ a:visited {
 .content {
   min-height: 450px;
   position: relative;
+}
+
+.content td img {
+    width: 25px;
+    position: static;
 }
 
 .content img {
@@ -85,9 +85,13 @@ a:visited {
   margin: 30px 30px
 }
 
-#create_contact label[for="category_id"] div:first-of-type {
+#create_contact form > label label:first-of-type {
   display: inline-block;
   margin: 5px 0 0 32px;
+}
+
+#create_contact form > label label {
+  display: block;
 }
 
 #create_contact form[action="/attempt_create"] p, #edit form p {
@@ -117,7 +121,7 @@ a:visited {
   display:  grid;
 }
 
-#create_contact label[for="category_id"] {
+#create_contact form > label {
   grid-row: 1 / 1;
   grid-column: 1/6;
   display: block;
@@ -143,9 +147,9 @@ a:visited {
   font-size: 16px;
 }
 
-#create_contact label[for="category_id"] div, label[for="new_category"] div {
+#create_contact form > label label, label[for="new_category"] div {
   font-size: 18px;
-  margin: 11px 0 0 102px;
+  margin: 11px 0 0 103px;
   color: blue;
 }
 
@@ -169,6 +173,10 @@ div.email_format {
   margin-left: 180px;
 }
 
+#display_contacts form[action="/signin"] {
+  margin-left: -36px;
+}
+
 dl {
   margin: 0 0 60px 40px;
 }
@@ -177,12 +185,17 @@ dt {
   text-decoration: underline;
 }
 
-#display_contacts form[action="/signin"] {
-  margin-left: -36px;
+#edit .edit_info input[name="phone"] {
+  width: 169px;
+  margin-left: 18px;
+}
+
+#edit label[for="new_category"] {
+  margin-top: -100px
 }
 
 #edit form {
-  margin: 55px 0 0 80px;
+  margin: 90px 0 0 80px;
 }
 
 #edit div + button {
@@ -196,11 +209,11 @@ dt {
 }
 
 #edit .delete {
-  margin: 9px 0 0 -25px;
+  margin: -49px 0 20px -25px;
 }
 
 #edit form + form {
-  margin: 50px 0 0 469px;
+  margin: 38px 0 0 469px;
 }
 
 #edit form[action="/cancel"] {
@@ -215,10 +228,11 @@ dt {
   vertical-align: middle;
 }
 
-#edit label[for="new_category"] > div {
+#edit label[for="new_category"] > label {
   display: block;
   margin-top: 5px;
   margin-bottom: 3px;
+  color: blue;
 }
 
 #edit .edit_info label[for="phone"] {
@@ -230,15 +244,15 @@ dt {
 }
 
 #edit label {
-  margin: 11px 0;
+  /* margin: 11px 0; */
 }
 
 #edit label[for="new_category"] {
   margin-left: 15px;
-  margin-top: 0px;
+  margin-bottom: 115px;
 }
 
-#edit label div {
+#edit label label {
   margin-left: 108px;
 }
 
@@ -246,7 +260,7 @@ dt {
   display: inline-block;
 }
 
-#edit label div:first-of-type {
+#edit label label:first-of-type {
   display: inline-block;
   margin-left: 37px;
 }
@@ -287,6 +301,10 @@ form[action="/create"] {
   display: inline-block;
 }
 
+form > label p {
+  display: inline-block
+}
+
 .formats section {
   margin-top: -15px
 }
@@ -316,10 +334,6 @@ label.checkbox {
   position: absolute;
   right: 37px;
   top: 23px;
-}
-
-label[for="category_id"] p {
-  display: inline-block
 }
 
 li {
@@ -480,10 +494,6 @@ main#create_contact {
   position: absolute;
   right: 225px;
   top: 140px;
-}
-
-#register label + button {
-  /* margin-top: 20px; */
 }
 
 #register input, #signin input {

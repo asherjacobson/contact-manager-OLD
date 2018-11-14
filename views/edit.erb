@@ -23,25 +23,25 @@
       <div>
         <label for="new_category"><p>Category:</p>
           <% @contacts[@current_user].sort_by { |x| x[:category_id] }.each do |category_hash| %>
-            <div>
+            <label>
               <input type="radio" name="new_category" value= <%= category_hash[:category_id] %> <%= checked?(category_hash) %>><%=' ' + category_hash[:name] %>
-          </div>
+            </label>
         <% end %>
         </label>
       </div>
       <div class="edit_info">
         <div>
-          <label for="name">Name:
+          <label>Name:
             <input type="text" name="name" value="<%= @name %>">
           </label>
         </div>
         <div>
-          <label for="phone">Phone:
+          <label>Phone:
             <input type="text" name="phone" value="<%= @phone %>">
           </label>
         </div>
         <div>
-          <label for="email">Email:
+          <label>Email:
             <input type="text" name="email" value="<%= @email %>">
           </label>
         </div>

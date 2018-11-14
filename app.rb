@@ -1,4 +1,4 @@
-# I built this app from scratch. It was not a part of the Launch School curriculum
+# I built this app from scratch. It was not a part of the Launch School curriculum. All files are my own.
 
 require "sinatra"
 require "bcrypt"
@@ -324,19 +324,25 @@ post "/create" do # view create contact page
 end
 
 post "/attempt_create" do 
-  create_contact_variables
   clear_messages if session[:messages_shown]
-  check_for_errant_input(@name, @phone, @email)
-
-  if session[:notifications].empty? 
-    @category_hash[:contacts][next_id("contact")] = {name: @name.capitalize, phone: @phone, email: @email} 
-    save_user_data(@contacts)
-
-    clear_messages if session[:messages_shown] # because 
-    generate_messages("You have added \"#{@name}\" to your contacts.", generate_new_contact_msg)
-    redirect "/"
-  else
+  if params["category_id"] == nil
+    generate_messages("You must first create a category")
     erb :create
+  else
+
+    create_contact_variables
+    check_for_errant_input(@name, @phone, @email)
+
+    if session[:notifications].empty? 
+      @category_hash[:contacts][next_id("contact")] = {name: @name.capitalize, phone: @phone, email: @email} 
+      save_user_data(@contacts)
+
+      clear_messages if session[:messages_shown] # because 
+      generate_messages("You have added \"#{@name}\" to your contacts.", generate_new_contact_msg)
+      redirect "/"
+    else
+      erb :create
+    end
   end
 end
 
