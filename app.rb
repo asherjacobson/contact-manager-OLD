@@ -296,6 +296,7 @@ post "/attempt_register" do
 end
 
 get "/" do 
+  clear_messages if session[:messages_shown]
   erb :index
 end
 
