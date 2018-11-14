@@ -37,6 +37,10 @@ helpers do
     end
   end
 
+  def no_categories? 
+    @contacts[@current_user].empty?
+  end
+
   def first_of_category?(category_hash, contact_id) 
     category_hash[:contacts].keys.min == contact_id
   end

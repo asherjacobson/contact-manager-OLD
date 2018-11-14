@@ -2,6 +2,11 @@
   <section>
     <main id="manage">
     <h2>Your Contact Categories</h2>
+
+    <% if no_categories? %>
+      <p> You do not have any categories. </p>
+    <% else %>
+
     <table>
       <tr>
         <th>Category</th>
@@ -19,6 +24,7 @@
       <% end %>
     </table>
 
+  <% end %>
     <div class="link-group">
       <a href="/">Return to Home Page</a>
       <form action="/create_category" method="post">
