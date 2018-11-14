@@ -9,3 +9,8 @@ gem "erubis"
 gem "sinatra-reloader"
 gem "bcrypt"
 gem "pry"
+
+group :production do
+  gem "puma"
+end
+
