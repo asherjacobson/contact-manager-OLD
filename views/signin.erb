@@ -1,0 +1,25 @@
+<div class="content">
+  <section>
+
+    <h2>Sign In</h2>
+    <main id="signin">
+    <form action="/attempt_signin" method="post">
+      <label for="username">Username:
+        <input name="username" type="text" value="<%= @username %>">
+      </label>
+      <label for="password">Password:
+        <input name="password" type="password" id="password">
+      </label>
+      <label class="checkbox">Show Password
+        <input class="show" type="checkbox" onclick="togglePassword()">
+      </label>
+      <button type="submit">Sign In</button>
+    </form>
+
+    <form action="/cancel" method="post">
+      <button type="submit">Cancel</button>
+    </form>
+    </main>
+
+  </section>
+</div>

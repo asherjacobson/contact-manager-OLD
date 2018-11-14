@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Contact Manager</title>
+    <link type="text/css" rel="stylesheet" href="/app.css">
+    <script src="/javascripts/app.js"></script>
+  </head>
+
+  <body>
+    <% if session[:undoable] %>
+      <div class="notifications">
+        <section>
+          <form action="/<%= session[:undoable] %>" method="post">
+            <label>
+              <p><%= session[:notifications].join("<br>") %></p>
+              <button class="undo">Undo</button>
+            </label>
+          </form> 
+        </section>
+      </div>
+      <div class="commentary">
+        <section>
+          <p><%= session[:commentary] %><p>
+        </section>
+      </div>
+
+    <% else %>
+
+      <% unless session[:notifications].empty? %>
+        <div class="notifications">
+          <section>
+            <p><%= session[:notifications].join("<br>") %></p>
+          </section>
+        </div>
+      <% end %>
+
+      <% if session[:commentary] %>
+        <div class="commentary">
+          <section>
+            <p><%= session[:commentary] %><p>
+          </section>
+        </div>
+      <% end %>
+
+    <% end %>
+
+    <div class="abs_container">
+      <%= yield %>
+    </div>
+
+  </body>
+</html>
+

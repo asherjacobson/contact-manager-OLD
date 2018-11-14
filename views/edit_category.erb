@@ -1,0 +1,41 @@
+<div class="content">
+  <section>
+    <main id="rename">
+
+    <h2>Rename "<%= @category[:name] %>"</h2>
+    <% if !no_contacts? %>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Email Address</th>
+        </tr>
+
+        <% @category[:contacts].each do |id, info| %>
+          <tr>
+            <td><%= info[:name] %></td>
+            <td><%= info[:phone] %></td>
+            <td><%= info[:email] %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <form action="/attempt_edit_category/<%= @category[:category_id] %>" method="post">
+      <label for="category_name">Category Name:
+        <input type="text" name="category_name" value="<%= @category_name %>">
+      </label>
+      <button type="submit">Submit Change</button>
+    </form>
+
+    <div>
+      <a href="/">Return to Home Page</a>
+      <form action="/cancel_to_catagories" method="post">
+        <button>Cancel</button>
+      </form>
+    </div>
+
+
+    </main>
+  </section>
+</div>

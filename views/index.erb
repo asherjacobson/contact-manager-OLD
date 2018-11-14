@@ -1,0 +1,77 @@
+<div class="content">
+  <section>
+    <main id="display_contacts">
+    <% if @current_user.length > 0 %>
+      <h2>Your Contacts</h2>
+      <% binding.pry %>
+      <% if @contacts[@current_user].size > 0 %>
+
+        <table>
+          <tr>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email Address</th>
+            <th></th>
+          </tr>
+
+          <% if no_contacts? %>
+            <tr>
+              <th>Example</th>
+              <td>Bob W.</td>
+              <td>123-456-7890</td>
+              <td>bobw@gmail.com</td>
+              <td><img src="edit.png"></td>
+            </tr>
+          <% else %>
+
+            <% @contacts[@current_user].sort_by { |category_hash| category_hash[:category_id] }.each do |category_hash| %> 
+              <% category_hash[:contacts].sort_by {|id, _| id }.each do |id, info| %>
+                <tr>
+                  <th><%= category_hash[:name] if first_of_category?(category_hash, id) %></th>
+                  <td><%= info[:name] %></td>
+                  <td><%= info[:phone] %></td>
+                  <td><%= info[:email] %></td>
+                  <td><a href="/edit/<%= category_hash[:category_id] %>/<%= id %>">
+                      <img src="edit.png"></a></td>
+                </tr>
+
+              <% end %>
+            <% end %>
+          <% end %>
+        </table>
+
+        <div class="link-group manage_create">
+          <a href="/manage">Manage Catagories</a>
+          <form action="/create" method="post">
+            <button type="submit">Create Contact</button>
+          </form>
+
+        <% else %>
+          <h4>To create contacts, first you must create a category.</h4>
+        <% end %>
+
+        <em>Signed in as <%= @current_user %>.</em>
+        <form action="/signout" method="post">
+          <button type="submit">Sign Out</button>
+        </form>
+        </div>
+
+      <% else %>
+
+        <h2>Contact Manager</h2>
+        <div class="link-group bottom-logged-out">
+          <p><em>You must sign in to use Contact Manager.</em></p>
+          <form action="/signin" method="post">
+            <button type="submit">Sign In</button>
+          </form>
+
+          <form action="/register" method="post">
+            <button type="submit">Register</button>
+          </form>
+
+        <% end %>
+        </div>
+    </main>
+  </section>
+</div>

@@ -1,0 +1,31 @@
+<div class="content">
+  <section>
+    <main id="manage">
+    <h2>Your Contact Categories</h2>
+    <table>
+      <tr>
+        <th>Category</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @contacts[@current_user].sort_by { |category_hash| category_hash[:category_id] }.each do |category_hash| %> 
+        <tr>
+          <td><%= category_hash[:name] %></td>
+          <td><a href="/edit_category/<%= category_hash[:category_id] %>">Rename</a></td>
+          <td><form action="/destroy_category/<%= category_hash[:category_id] %>" method="post">
+              <button class="delete" type="submit">Delete</button>
+            </form></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <div class="link-group">
+      <a href="/">Return to Home Page</a>
+      <form action="/create_category" method="post">
+        <button type="submit">Create Category</button>
+      </form>
+    </div>
+
+    </main>
+  </section>
+</div>

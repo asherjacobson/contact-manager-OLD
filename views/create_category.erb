@@ -1,0 +1,22 @@
+<div class="content">
+  <section>
+    <main id="create_category">
+    <h2>Create New Category</h2>
+
+    <form action="/attempt_create_category" method="post">
+      <label for="new_category_name">Category Name:
+        <input type="text" name="new_category_name" value="<%= @category_name %>">
+        <button type="submit">Submit</button>
+      </label>
+    </form>
+
+    <div>
+      <a href="/">Return to Home Page</a>
+      <form action="/cancel_to_catagories" method="post">
+        <button>Cancel</button>
+      </form>
+    </div>
+
+    </main>
+  </section>
+</div>

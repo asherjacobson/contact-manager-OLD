@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="ashers_contacts.css">
+    <title>LS Contacts</title>
+  </head>
+  <body>
+    <form action="#" method="post">
+      <fieldset>
+
+    <h2>Welcome to your Contact Manager!</h2>
+        <div class="contact-info">
+          <label>First Name:
+            <input type="text" name="first_name">
+          </label>
+          <label>Last Name:
+            <input type="text" name="last_name">
+          </label>
+          <label>Email Address:
+            <input type="email" name="email" placeholder="Example: user@domain">
+          </label>
+        </div><!--
+
+        --><div class="contact-info">
+          <label>City:
+            <input type="text" name="city">
+          </label>
+          <label>State:
+            <select class="state" name="state" name="state">
+              <option>AK</option>
+              <option>AL</option>
+              <option>AR</option>
+              <option>AZ</option>
+              <option>CA</option>
+              <option>CO</option>
+              <option>CT</option>
+              <option>DC</option>
+              <option>DE</option>
+              <option>FL</option>
+              <option>GA</option>
+              <option>HI</option>
+              <option>IA</option>
+              <option>ID</option>
+              <option>IL</option>
+              <option>IN</option>
+              <option>KS</option>
+              <option>KY</option>
+              <option>LA</option>
+              <option>MA</option>
+              <option>MD</option>
+              <option>ME</option>
+              <option>MI</option>
+              <option>MN</option>
+              <option>MO</option>
+              <option>MS</option>
+              <option>MT</option>
+              <option>NC</option>
+              <option>ND</option>
+              <option>NE</option>
+              <option>NH</option>
+              <option>NJ</option>
+              <option>NM</option>
+              <option>NV</option>
+              <option>NY</option>
+              <option>OH</option>
+              <option>OK</option>
+              <option>OR</option>
+              <option>PA</option>
+              <option>RI</option>
+              <option>SC</option>
+              <option>SD</option>
+              <option>TN</option>
+              <option>TX</option>
+              <option>UT</option>
+              <option>VA</option>
+              <option>VT</option>
+              <option>WA</option>
+              <option>WI</option>
+              <option>WV</option>
+              <option>WY</option>
+            </select>
+          </label>
+          <label>Zipcode:
+            <input class="zip" type="number" name="zip" placeholder="Example: 12345" max=99999 min=1>
+          </label>
+        </div>        
+        <h4>Help us get to know you a little better...</h4>  
+
+        <div class="form-labels first">What languages do you want to learn? </div> 
+        <div class="form-labels">What's your favorite color?</div>
+        <br>
+        <div class="get-to-know">
+          <label>
+            <input type="checkbox" name="sql">SQL
+          </label>
+          <label>
+            <input type="checkbox" name="css">CSS
+          </label>
+          <label>
+            <input type="checkbox" name="html">HTML
+          </label>
+          <label>
+            <input type="checkbox" name="python">Python
+          </label>
+          <label>
+            <input type="checkbox" name="ruby">Ruby
+          </label>
+        </div><!--
+
+        --><div class="get-to-know">
+          <label>
+            <input type="radio" name="color" value="red" checked>
+            Red
+          </label>
+          <label>
+            <input type="radio" name="color" value="blue">
+            Blue
+          </label>
+          <label>
+            <input type="radio" name="color" value="green">
+            Green
+          </label>
+          <label>
+            <input type="radio" name="color" value="yellow">
+            Yellow
+          </label>
+          <label>
+            <input type="radio" name="color" value="other">
+            Other
+          </label>
+        </div>
+
+        <label for="comments">Additional Comments:</label>
+        <textarea name="comments" id="comments" rows="6" cols="80">Type something here!</textarea>
+
+        <input type="hidden" value="2018-08-09" name="timestamp">
+
+        <button type="submit">Send Form</button>
+        <button type="clear">Reset Form</button>
+
+      </fieldset>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<div class="formats">
+  <section>
+    <div class="phone_format">
+      <h4>Valid phone number formats:</h4>
+      <ul>
+        <%= display_phone_formats %>
+      </ul>
+    </div>
+
+    <div class="email_format">
+      <h4>Valid email address format:</h4> 
+      <p>address@domain.com</p>
+    </div>
+  </section>
+</div>
+
+<div class="content">
+  <section>
+    <main id="edit">
+    <h2>Edit <%= @name %></h2>
+
+    <form action="/<%= @category_id %>/<%= @contact_id %>/attempt_edit" method="post"> <!--pass in category & id to know which contact to delete -->
+      <div>
+        <label for="new_category"><p>Category:</p>
+          <% @contacts[@current_user].sort_by { |x| x[:category_id] }.each do |category_hash| %>
+            <div>
+              <input type="radio" name="new_category" value= <%= category_hash[:category_id] %> <%= checked?(category_hash) %>><%=' ' + category_hash[:name] %>
+          </div>
+        <% end %>
+        </label>
+      </div>
+      <div class="edit_info">
+        <div>
+          <label for="name">Name:
+            <input type="text" name="name" value="<%= @name %>">
+          </label>
+        </div>
+        <div>
+          <label for="phone">Phone:
+            <input type="text" name="phone" value="<%= @phone %>">
+          </label>
+        </div>
+        <div>
+          <label for="email">Email:
+            <input type="text" name="email" value="<%= @email %>">
+          </label>
+        </div>
+        <button type="submit">Submit Changes</button>
+      </div>
+    </form>
+
+    <form action="/<%= @category_id %>/<%= @contact_id %>/destroy" method="post">
+      <button class="delete" type="submit">Delete Contact</button>
+    </form>
+
+    <form action="/cancel" method="post">
+      <button type="submit">Cancel</button>
+    </form>
+
+    </main>
+  </section>
+</div>

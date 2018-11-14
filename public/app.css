@@ -1,0 +1,640 @@
+/* ALPHABETICAL (first word only, so shared selectors are not ordered) EXCEPT MEDIA SELECTORS */
+
+.abs_container {
+  position: relative;
+}
+
+a:visited {
+  color: blue;
+}
+
+.bottom {
+  display: table;
+  width: 100%;
+  margin: 30px 0 50px 0;
+}
+
+.bottom-logged-out p {
+  margin-top: 100px;
+}
+
+.bottom-logged-out button {
+  margin: 20px 0 0 40px;
+}
+
+.commentary {
+  background: #ccffe6;
+}
+
+.contact_info {
+  grid-row: 1 / 1;
+  grid-column: 5/10;
+  margin: 43px 10px 0 0;
+}
+
+.contact_info label {
+  display: block;
+  margin-bottom: 35px;
+  text-align: right;
+}
+
+.content > section, .notifications section, .commentary section {
+  position: relative;
+};
+
+.content {
+  background:  #ccd5ff;
+  min-height: 450px;
+  position: relative;
+}
+
+.content img {
+  position: absolute;
+  right: 0;
+  width: 200px;
+}
+
+.content > section {
+  min-height: 450px;
+  margin-top: 18px;
+}
+
+#create_category h2 {
+  margin-top: 90px;
+}
+
+#create_category div {
+  margin-top: 40px;
+}
+
+#create_category button, #rename button, #register button, #signin button {
+  width: 120px;
+  height: 35px;
+}
+
+#create_category form[action^="/can"] {
+  display: inline-block;
+  margin-left: 30px
+}
+
+#create_category input {
+  margin: 30px 30px
+}
+
+#create_contact label[for="category_id"] div:first-of-type {
+  display: inline-block;
+  margin: 5px 0 0 32px;
+}
+
+#create_contact form[action="/attempt_create"] p, #edit form p {
+  float: left;
+  margin-top: 2px;
+}
+
+#create_contact h2 {
+  grid-column: 3/9;
+  grid-row: 1 / 2;
+  text-align:  center;
+  vertical-align: middle;
+  font-size: 27px;
+  margin: 50px 0 16px 0;
+  color: #3d5fff;
+}
+
+#create_contact form {
+  font-size: 18px;
+}
+
+#create_contact form[action="/attempt_create"] {
+  grid-column: 1/11;
+  grid-row: 2/3;
+  display grid;
+  grid-template: 70% 30% / repeat(10, 10%);
+  display:  grid;
+}
+
+#create_contact label[for="category_id"] {
+  grid-row: 1 / 1;
+  grid-column: 1/6;
+  display: block;
+  margin: 38px 0 0 86px;
+}
+
+#create_contact form[action="/cancel"] {
+  grid-row: 3/4;
+  grid-column: 3/6;
+  text-align: center;
+  margin: -80px 0 0px -17px;
+}
+
+#create_contact form[action="/attempt_create"] button {
+  grid-row: 3/4;
+  grid-column: 6/10;
+  margin: 40px 30px;
+}
+
+#create_contact button, #edit button {
+  width: 140px;
+  height: 40px;
+  font-size: 16px;
+}
+
+#create_contact label[for="category_id"] div, label[for="new_category"] div {
+  font-size: 18px;
+  margin: 11px 0 0 102px;
+  color: blue;
+}
+
+.delete {
+  color: red;
+}
+
+div.phone_format {
+  position: absolute;
+  left: 42px;
+  bottom: 110px;
+  width: 230px;
+  z-index:  2;
+}
+
+div.email_format {
+  position: absolute;
+  right: 56px;
+  bottom: 256px;
+  z-index: 2;
+  margin-left: 180px;
+}
+
+dl {
+  margin: 0 0 60px 40px;
+}
+
+dt {
+  text-decoration: underline;
+}
+
+#display_contacts form[action="/signin"] {
+  margin-left: -36px;
+}
+
+#edit form {
+  margin: 77px 0 0 80px;
+}
+
+#edit div + button {
+  position: absolute;
+  bottom: 78px;
+  right: 289px;
+}
+
+#edit .email_format {
+  bottom: 200px;
+}
+
+#edit .delete {
+  margin: 31px 0 0 -25px;
+}
+
+#edit form + form {
+  margin: 50px 0 0 469px;
+}
+
+#edit form[action="/cancel"] {
+  position: absolute;
+  bottom: 78px;
+  left: 139px;
+  margin-left: -40px;
+}
+
+#edit div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#edit label[for="new_category"] > div {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+#edit .edit_info label[for="phone"] {
+  margin-left: -2px;
+}
+
+#edit .edit_info div {
+  display: block
+}
+
+#edit label {
+  margin: 11px 0;
+}
+
+#edit label[for="new_category"] {
+  margin-left: 15px;
+  margin-top: -52px;
+}
+
+#edit label div {
+  margin-left: 108px;
+}
+
+#edit label {
+  display: inline-block;
+}
+
+#edit label div:first-of-type {
+  display: inline-block;
+  margin-left: 37px;
+}
+
+#edit {
+  text-align: left;
+}
+
+.edit_info input, .contact_info input {
+  margin-left: 20px;
+}
+
+.edit_info {
+  margin: -24px 0 0 80px;
+}
+
+.edit_info div:first-of-type {
+  margin-top: -5px;
+}
+
+.email_format p {
+  margin: 20px 0 0px 26px;
+}
+
+form[action="/attempt_signin"] button {
+  position: absolute;
+  right: 225px;
+  bottom: -60px;
+}
+
+form[action="/signout"] button, .link-group button, .logged_out button {
+  width: 130px;
+  height: 40px;
+  font-size:  15px;
+}
+
+form[action="/create"] {
+  display: inline-block;
+}
+
+.formats section {
+  margin-top: -15px
+}
+
+h2, h3 {
+  color: #5262a9;
+  margin: 50px auto;
+  text-align:  center;
+}
+
+html {
+  font-size: 18px;
+  min-width: 770px;
+  margin: 0 9px;
+}
+
+input[type=checkbox]:checked + label {
+  display: none;
+}
+
+.inner span {
+  margin-right: 170px;
+  font-style: normal;
+}
+
+label.checkbox {
+  position: absolute;
+  right: 37px;
+  top: 23px;
+}
+
+label[for="category_id"] p {
+  display: inline-block
+}
+
+li {
+  text-align: left;
+}
+
+li span {
+  font-style: normal;
+  color: #009a4e;
+}
+
+li.inner span {
+  color: black;
+}
+
+.link-group form {
+  display: inline-block;
+}
+
+.logged_out form {
+  margin: 110px 0;
+}
+
+.logged_out form[action="/signin"] {
+  margin-left: 50px
+}
+
+.logged_out form[action="/cancel"] {
+  margin: 0 50px 0 -100px;
+}
+
+.logged_out div + button {
+  margin: 27px 0 0 180px;
+}
+
+.logged_out div:nth-of-type(2) {
+  margin-left: 5px;
+}
+
+.logged_out form[action="/cancel"] {
+  position: absolute;
+  left: 298px;
+  top: 239px;
+}
+
+.logged_out div {
+  margin: 20px 0;
+  font-size: 22px;
+}
+
+main#create_contact {
+  text-align: left;
+  display: grid;
+  grid-template: 35% 35% 30% / repeat(10, 10%);
+  height: 100%;
+}
+
+#manage .link-group {
+  margin: 50px 0 40px 102px;
+}
+
+#manage .link-group a {
+  margin-left: -100px;
+}
+
+#manage ul a {
+  right: 205px;
+}
+
+#manage ul button {
+  right: 141px;
+}
+
+#manage .link-group a {
+  margin-right: 30px;
+}
+
+#manage li {
+  margin: 5px 0;
+}
+
+#manage ul {
+  margin-left: 121px;
+}
+
+.manage_create form[action="/signout"] {
+  grid-area: 3/2/4/3;
+}
+
+.manage_create em {
+  grid-area: 3/1/4/2;
+  margin: 10px 0 0 10px;
+}
+
+.manage_create {
+  display: grid;
+  grid-template: 2fr 1fr 2fr / 50% 50%;
+  width: 50%;
+  margin: 60px auto 50px auto;
+  position:  r;
+}
+
+.manage_create a {
+  grid-area: 1/1/2/2;
+  margin: 9px -10px 0 0;
+}
+
+.manage_create form {
+  grid-area: 1/2/2/3;
+}
+
+.notifications {
+  margin: 17px 0 16px 0;
+  background: #FFFF99;
+  text-align:  center;
+}
+
+.notifications label {
+  font-weight: bold;
+}
+
+.notifications p {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.outer {
+  margin-left: 20px;
+  list-style:  none;
+}
+
+.phone_format li {
+  list-style-type: none;
+  letter-spacing: .5px;
+  font-size: 15px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.phone_format p {
+  margin: 10px;
+}
+
+.phone_instructions * {
+  margin: 5px auto;
+}
+
+#register form label:nth-of-type(2) {
+  margin-left 40px
+}
+
+#register form[action="/cancel"] button {
+  left: 203px;
+  bottom: 0;
+}
+
+#register button {
+  position: absolute;
+  right: 225px;
+  top: 140px;
+}
+
+#register label + button {
+  margin-top: 20px;
+}
+
+#register input, #signin input {
+  margin: 0px 10px 0 17px;
+}
+
+#register, #signin {
+  position: relative;
+  text-align: right;
+}
+
+#register label, #signin label {
+  margin: 20px;
+  display: block;
+}
+
+#register form, #signin form {
+  margin: 60px 195px 60px 0;
+}
+
+#rename p {
+  margin-top: 90px;
+  text-decoration: underline;
+}
+
+#rename form + div {
+  margin-bottom: 60px;
+}
+
+#rename input, #rename a {
+  margin: 60px 30px;
+}
+
+#rename form, #rename button {
+  display: inline-block;
+}
+
+section {
+  background: #ffffff85;
+  width: 700px;
+  margin: 13px auto 15px auto;
+  padding: 10px 0;
+  min-height: 450;
+}
+
+section, .commentary {
+  text-align: center;
+}
+
+.show {
+  position: absolute;
+  right: 116px;
+  top: 4px;
+}
+
+#signin div + button {
+  margin: 40px 20px;
+}
+
+#signin form + form {
+  position: absolute;
+  bottom: -120px;
+  left: 202px;
+}
+
+#signin label + button {
+  margin-top: 20px;
+}
+
+#signin {
+  position: relative;
+}
+
+.signout em {
+  padding-left: 21px;
+}
+
+.signout button {
+  margin-left: 33px;
+}
+
+.signout form {
+  right: 197px;
+  position: absolute;
+  top: 350px;
+}
+
+table {
+  margin: 0 auto;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  max-width: 160px;
+  overflow: auto;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+tr:first-of-type th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #5262a9;
+  color: white;
+}
+
+ul button {
+  position: absolute;
+  right: 60px;
+}
+
+ul a {
+  position: absolute;
+  right: 124px;
+}
+
+.undo {
+  margin-left: 10px;
+}
+
+@media (max-width: 1350px) {
+  div.email_format {
+    vertical-align: top;
+    right: 90px;
+    bottom: 152px;
+  }
+
+  div.phone_format {
+    position: static;
+    margin-left: 40px;
+  }
+
+  .formats section {
+    margin: 0 auto;
+  }
+
+  .formats {
+    background: #ccffe6;
+  }
+
+  .formats {
+    display: flex;
+    margin: 15px auto;
+    align-content: flex-start;
+    position: relative;
+  }
+} 
+
+@media (min-width: 1350.01px) { 
+  .formats {
+    height: 0px;
+  }
+}
+

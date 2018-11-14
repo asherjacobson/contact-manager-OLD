@@ -1,0 +1,52 @@
+<div class="formats">
+  <section>
+    <div class="phone_format">
+      <h4>Valid phone number formats:</h4>
+      <ul>
+        <%= display_phone_formats %>
+      </ul>
+    </div>
+
+    <div class="email_format">
+      <h4>Valid email address format:</h4> 
+      <p>address@domain.com</p>
+    </div>
+  </section>
+</div>
+
+<div class="content">
+  <section>
+    <main id="create_contact">
+    <h2>Create New Contact</h2>
+
+    <form action="/attempt_create" method="post">
+      <label for="category_id"><p>Category:</p>
+        <% @contacts[@current_user].sort_by { |x| x[:category_id] }.each do |category_hash| %>
+          <div>
+            <input type="radio" name="category_id" value= <%= category_hash[:category_id] %> <%= checked?(category_hash) %>><%=' ' + category_hash[:name] %>
+        </div>
+      <% end %>
+      </label>
+
+      <div class="contact_info">
+        <label for="name">Name:
+          <input type="text" name="name" value="<%= @name %>">
+        </label>
+        <label for="phone">Phone:
+          <input type="text" name="phone" value="<%= @phone %>">
+        </label>
+        <label for="email">Email:
+          <input type="text" name="email" value="<%= @email %>">
+        </label>
+      </div>
+      <br>
+      <button type="submit">Create Contact</button>
+    </form>
+
+    <br>
+    <form action="/cancel" method="post">
+      <button>Cancel</button>
+    </form>
+    </main>
+  </section>
+</div>
