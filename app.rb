@@ -67,10 +67,11 @@ def save_user_data(yaml_object)
   File.open("#{environment}/#{data_type}.yml", 'w') { |file| file.write yaml_object.to_yaml } # no ../  (see load data)
 end
 
-def clear_messages
+def clear_messages 
   session.delete(:undoable)
   session.delete(:commentary)
   session[:notifications] = []
+  session[:messages_shown] = false
 end
 
 ################### INPUT VALIDATION METHODS ###################
@@ -221,14 +222,14 @@ end
 ################### PRE-SIGNIN ROUTES #####################
 
 post "/signin" do # display signin form
-  clear_messages
+  clear_messages if session[:messages_shown]
   erb :signin
 end
 
 post "/attempt_signin" do 
   @username = params["username"].strip.capitalize 
   encrypted_password = @credentials[@username]
-  clear_messages
+  clear_messages if session[:messages_shown]
 
   if encrypted_password == params["password"].strip && params["password"] != ""
     session[:logged_in] = @username
@@ -242,14 +243,14 @@ post "/attempt_signin" do
 end
 
 post "/register" do # view register form
-  clear_messages
+  clear_messages if session[:messages_shown]
   erb :register
 end
 
 post "/attempt_register" do 
   @username = params["username"].strip.capitalize
   @password = params["password"].strip
-  clear_messages
+  clear_messages if session[:messages_shown]
 
   if @password != params["confirm_password"].strip
     generate_messages("Password confirmation did not match. Please check your spelling and try again.")
@@ -281,12 +282,12 @@ get "/" do
 end
 
 post "/cancel" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   redirect "/"
 end 
 
 post "/cancel_to_catagories" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   redirect "/manage"
 end 
 
@@ -294,26 +295,26 @@ end
 
 post "/signout" do 
   session.delete :logged_in
-  clear_messages
+  clear_messages if session[:messages_shown]
   generate_messages("You have been signed out.", generate_logout_msg)
   redirect "/"
 end
 
 post "/create" do # view create contact page
-  clear_messages
+  clear_messages if session[:messages_shown]
   erb :create
 end
 
 post "/attempt_create" do 
   create_contact_variables
-  clear_messages
+  clear_messages if session[:messages_shown]
   check_for_errant_input(@name, @phone, @email)
 
   if session[:notifications].empty? 
     @category_hash[:contacts][next_id("contact")] = {name: @name.capitalize, phone: @phone, email: @email} 
     save_user_data(@contacts)
 
-    clear_messages # because 
+    clear_messages if session[:messages_shown] # because 
     generate_messages("You have added \"#{@name}\" to your contacts.", generate_new_contact_msg)
     redirect "/"
   else
@@ -323,13 +324,13 @@ end
 
 
 get "/edit/:category_id/:contact_id" do # view edit contact form
-  clear_messages
+  clear_messages if session[:messages_shown]
   create_contact_variables
   erb :edit
 end
 
 post "/:category_id/:contact_id/attempt_edit" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   @new_category_id = params["new_category"].to_i
   @new_category_hash = get_category_hash(@new_category_id)
 
@@ -350,7 +351,7 @@ post "/:category_id/:contact_id/attempt_edit" do
     session[:just_created] = {category_id: @new_category_id, contact_id: @new_contact_id, name: @name, phone: @phone, email: @email} 
 
     save_user_data(@contacts) 
-    clear_messages
+    clear_messages if session[:messages_shown]
     generate_messages("You've successfully updated #{@name}.", generate_edit_msg)
     session[:undoable] = "undo_edit"
     redirect "/"
@@ -362,7 +363,7 @@ post "/:category_id/:contact_id/attempt_edit" do
 end
 
 post "/undo_edit" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   @contact = session[:just_deleted] 
   @category_hash = get_category_hash(@contact[:category_id]) 
   @category_hash[:contacts][@contact[:contact_id]] = {name: @contact[:name], phone: @contact[:phone], email: @contact[:email]} 
@@ -379,7 +380,7 @@ post "/undo_edit" do
 end
 
 post "/:category_id/:contact_id/destroy" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   create_contact_variables
   session[:just_deleted] = {category_id: @category_id, contact_id: @contact_id, name: @name, phone: @phone, email: @email} 
 
@@ -392,7 +393,7 @@ post "/:category_id/:contact_id/destroy" do
 end
 
 post "/undo_destroy" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   @contact = session[:just_deleted] 
   @category_hash = get_category_hash(@contact[:category_id]) 
 
@@ -406,17 +407,18 @@ post "/undo_destroy" do
 end
 
 get "/manage" do 
-  clear_messages
+  binding.pry
+  clear_messages if session[:messages_shown]
   erb :manage
 end
 
 post "/create_category" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   erb :create_category
 end
 
 post "/destroy_category/:category_id" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   @category = get_category_hash(params[:category_id].to_i) 
 
   session[:just_deleted] = @category 
@@ -429,7 +431,7 @@ post "/destroy_category/:category_id" do
 end
 
 post "/undo_destroy_category" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   @category = session[:just_deleted] 
   @contacts[@current_user] << @category 
   save_user_data(@contacts)
@@ -440,7 +442,7 @@ post "/undo_destroy_category" do
 end
 
 post "/attempt_create_category" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   @category_name = params["new_category_name"].capitalize.strip
   if @category_name == ''
     generate_messages("Category name may not be blank")
@@ -460,16 +462,16 @@ post "/attempt_create_category" do
 end
 
 get "/edit_category/:category_id" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   @category = get_category_hash(params[:category_id].to_i) 
   erb :edit_category
 end
 
 post "/attempt_edit_category/:category_id" do 
-  clear_messages
+  clear_messages if session[:messages_shown]
   @category_name = params["category_name"].capitalize
   @category = get_category_hash(params[:category_id].to_i) 
-  check_for_invalid_name(@category_name) 
+  check_for_valid_name(@category_name) 
 
   if @contacts[@current_user].any? { |category_hash| category_hash[:name] == @category_name } 
     generate_messages("You already have a category with that name")
@@ -482,6 +484,7 @@ post "/attempt_edit_category/:category_id" do
 
     generate_messages("\"#{@category_name}\" has been renamed.", generate_cat_rename_msg)
     session[:undoable] = "undo_rename_category"
+    binding.pry
     redirect "/manage"
   else
     erb :edit_category
@@ -489,7 +492,7 @@ post "/attempt_edit_category/:category_id" do
 end
 
 post "/undo_rename_category" do
-  clear_messages
+  clear_messages if session[:messages_shown]
   @category = get_category_hash(session[:just_renamed][:id]) 
   @category[:name] = session[:just_renamed][:name] 
   save_user_data(@contacts) 

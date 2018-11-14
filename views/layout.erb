@@ -15,6 +15,7 @@
             <label>
               <p><%= session[:notifications].join("<br>") %></p>
               <button class="undo">Undo</button>
+              <% session[:messages_shown] = true %>
             </label>
           </form> 
         </section>
@@ -31,6 +32,7 @@
         <div class="notifications">
           <section>
             <p><%= session[:notifications].join("<br>") %></p>
+              <% session[:messages_shown] = true %>
           </section>
         </div>
       <% end %>

@@ -9,3 +9,13 @@ admin:
 - :category_id: 3
   :contacts: {}
   :name: Other
+Yo:
+- :category_id: 1
+  :contacts: {}
+  :name: Friends
+- :category_id: 2
+  :contacts: {}
+  :name: Dfasdf
+- :category_id: 3
+  :contacts: {}
+  :name: Other
