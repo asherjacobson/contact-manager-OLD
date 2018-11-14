@@ -22,6 +22,10 @@ a:visited {
   margin: 20px 0 0 40px;
 }
 
+#edit label[for="new_category"] {
+  margin-top: -60px;
+}
+
 .commentary {
   background: #ccffe6;
 }
@@ -191,7 +195,7 @@ dt {
 }
 
 #edit label[for="new_category"] {
-  margin-top: -100px
+  /* margin-top: -100px; */
 }
 
 #edit form {
