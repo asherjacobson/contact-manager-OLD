@@ -9,14 +9,3 @@ admin:
 - :category_id: 3
   :contacts: {}
   :name: Other
-Yo:
-- :category_id: 10
-  :contacts: {}
-  :name: Sdldk
-- :category_id: 11
-  :contacts:
-    1:
-      :name: Asher
-      :phone: '4253518113'
-      :email: 1@gmail.com
-  :name: S;dlks
