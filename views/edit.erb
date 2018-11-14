@@ -17,7 +17,7 @@
 <div class="content">
   <section>
     <main id="edit">
-    <h2>Edit <%= @name %></h2>
+    <h2>Edit <%= which_name(@name) %></h2>
 
     <form action="/<%= @category_id %>/<%= @contact_id %>/attempt_edit" method="post"> <!--pass in category & id to know which contact to delete -->
       <div>

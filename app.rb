@@ -6,12 +6,6 @@ require "yaml"
 require "tilt/erubis"
 require "pry" 
 
-PHONE_MSG = "Phone number format is invalid."
-EMAIL_MSG = "Email address format is invalid."
-FIX_MSG = "Please update it or leave it blank."
-EITHER_MSG = "Either phone or email may be left blank"
-BOTH_MSG = ", but not both."
-
 configure(:development) do 
   require "sinatra/reloader" 
 end 
@@ -49,6 +43,14 @@ helpers do
 
   def display_phone_formats 
     ['<li>###-####', '###-###-####', '###.###.####', '##########', '(###)###-####', '+1##########', '+1(###)###-####</li>'].join("</li><li>")
+  end
+
+  def which_name(name) 
+    if name == "" || duplicate_info?(name, :name)
+      @contact[:name]
+    else
+      name
+    end
   end
 end
 
@@ -105,16 +107,32 @@ def valid_email?(email)
   email.match?(/\A\w+([\-.]\w+)*@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
 end
 
+PHONE_MSG = "Phone number format is invalid."
+EMAIL_MSG = "Email address format is invalid."
+FIX_MSG = "Please update it or leave it blank."
+EITHER_MSG = "Either phone or email may be left blank"
+BOTH_MSG = ", but not both."
+
 def check_valid_phone_email_combo(phone, email)
-  if phone.empty? && email.empty? #ee 
+  if phone.empty? && email.empty? 
+    # both empty
     session[:notifications].push(EITHER_MSG + BOTH_MSG)
-  elsif !valid_phone?(phone) && !phone.empty? && !valid_email?(email) && !email.empty? #ii
+  elsif !valid_phone?(phone) && !phone.empty? && !valid_email?(email) && !email.empty? 
+    # both invalid not empty
     session[:notifications].push(PHONE_MSG, EMAIL_MSG, EITHER_MSG + ".") 
-  elsif !valid_phone?(phone) && !phone.empty? 
-    session[:notifications].push(PHONE_MSG) 
+  elsif !valid_phone?(phone) && !phone.empty? && valid_email?(email)
+    # phone invalid not empty, email valid
+    session[:notifications].push(PHONE_MSG, EITHER_MSG + ".") 
+  elsif !valid_email?(email) && !email.empty? && valid_phone?(phone)
+    # email invalid not empty, phone valid
+    session[:notifications].push(EMAIL_MSG, EITHER_MSG + ".")
+  elsif !valid_phone?(phone) && !phone.empty?
+    # phone invalid not empty, email empty
+    session[:notifications].push(PHONE_MSG)
   elsif !valid_email?(email) && !email.empty?
+    # email invalid not empty, phone empty
     session[:notifications].push(EMAIL_MSG)
-  end
+  end # else either both valid or one is valid and other empty, in all cases add no msg
 end
 
 def duplicate_info?(input, info_type) 
@@ -123,7 +141,7 @@ def duplicate_info?(input, info_type)
   end 
   @duplicate = true;
   return true unless @contact && input == @contact[info_type]
-  end # unless dup of self due to editing some but not all contact info
+  end # unless dup of self, temporarilty, due to editing some but not all contact info
   false
 end 
 
@@ -327,7 +345,7 @@ get "/edit/:category_id/:contact_id" do # view edit contact form
   clear_messages if session[:messages_shown]
   create_contact_variables
   erb :edit
-end
+end 
 
 post "/:category_id/:contact_id/attempt_edit" do 
   clear_messages if session[:messages_shown]
@@ -342,7 +360,7 @@ post "/:category_id/:contact_id/attempt_edit" do
     generate_messages("You haven't made any changes.", generate_unchanged_msg)
     redirect "/"
 
-  elsif session[:notifications].empty? || session[:notifications].size == 1 && [@phone, @email].include?('') && !@duplicate
+  elsif session[:notifications].empty? 
     @new_contact_id = next_id("contact") 
     @old_category_hash[:contacts].reject! { |id, info| id == @contact_id }
     session[:just_deleted] = {category_id: @category_id, contact_id: @contact_id, name: @contact[:name], phone: @contact[:phone], email: @contact[:email]}
@@ -407,7 +425,6 @@ post "/undo_destroy" do
 end
 
 get "/manage" do 
-  binding.pry
   clear_messages if session[:messages_shown]
   erb :manage
 end
@@ -484,7 +501,6 @@ post "/attempt_edit_category/:category_id" do
 
     generate_messages("\"#{@category_name}\" has been renamed.", generate_cat_rename_msg)
     session[:undoable] = "undo_rename_category"
-    binding.pry
     redirect "/manage"
   else
     erb :edit_category

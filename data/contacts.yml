@@ -19,3 +19,19 @@ Yo:
 - :category_id: 3
   :contacts: {}
   :name: Other
+Hi:
+- :category_id: 3
+  :contacts: {}
+  :name: Other
+- :category_id: 1
+  :contacts: {}
+  :name: Friends
+- :category_id: 4
+  :contacts: {}
+  :name: Sdds
+- :category_id: 5
+  :contacts: {}
+  :name: Sdsd
+- :category_id: 2
+  :contacts: {}
+  :name: Work

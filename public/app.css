@@ -1,5 +1,10 @@
 /* ALPHABETICAL (first word only, so shared selectors are not ordered) EXCEPT MEDIA SELECTORS */
 
+.content td img {
+    width: 25px;
+    position: static;
+}
+
 .abs_container {
   position: relative;
 }
@@ -43,7 +48,6 @@ a:visited {
 };
 
 .content {
-  background:  #ccd5ff;
   min-height: 450px;
   position: relative;
 }
@@ -152,7 +156,7 @@ a:visited {
 div.phone_format {
   position: absolute;
   left: 42px;
-  bottom: 110px;
+  bottom: 111px;
   width: 230px;
   z-index:  2;
 }
@@ -160,7 +164,7 @@ div.phone_format {
 div.email_format {
   position: absolute;
   right: 56px;
-  bottom: 256px;
+  bottom: 254px;
   z-index: 2;
   margin-left: 180px;
 }
@@ -178,7 +182,7 @@ dt {
 }
 
 #edit form {
-  margin: 77px 0 0 80px;
+  margin: 55px 0 0 80px;
 }
 
 #edit div + button {
@@ -192,7 +196,7 @@ dt {
 }
 
 #edit .delete {
-  margin: 31px 0 0 -25px;
+  margin: 9px 0 0 -25px;
 }
 
 #edit form + form {
@@ -231,7 +235,7 @@ dt {
 
 #edit label[for="new_category"] {
   margin-left: 15px;
-  margin-top: -52px;
+  margin-top: 0px;
 }
 
 #edit label div {
@@ -479,7 +483,7 @@ main#create_contact {
 }
 
 #register label + button {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 #register input, #signin input {
@@ -574,7 +578,7 @@ table {
 td, th {
   border: 1px solid #ddd;
   padding: 8px;
-  max-width: 160px;
+  max-width: 200px;
   overflow: auto;
 }
 
@@ -585,7 +589,6 @@ tr:hover {background-color: #ddd;}
 tr:first-of-type th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
   background-color: #5262a9;
   color: white;
 }
