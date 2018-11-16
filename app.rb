@@ -341,7 +341,7 @@ post "/attempt_create" do
       @category_hash[:contacts][next_id("contact")] = {name: @name.capitalize, phone: @phone, email: @email} 
       save_user_data(@contacts)
 
-      clear_messages if session[:messages_shown] # because 
+      clear_messages if session[:messages_shown]  
       generate_messages("You have added \"#{@name}\" to your contacts.", generate_new_contact_msg)
       redirect "/"
     else
@@ -351,7 +351,7 @@ post "/attempt_create" do
 end
 
 
-get "/edit/:category_id/:contact_id" do # view edit contact form
+get "/edit/:category_id/:contact_id" do 
   clear_messages if session[:messages_shown]
   create_contact_variables
   erb :edit
