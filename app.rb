@@ -1,10 +1,15 @@
-# I built this app from scratch. It was not a part of the Launch School curriculum. All files are my own.
-
+# I built this app from scratch. All files, stylsheets, and javascripts are my own.
 require "sinatra"
 require "bcrypt"
 require "yaml"
 require "tilt/erubis"
 require "pry" 
+
+PHONE_MSG = "Phone number format is invalid."
+EMAIL_MSG = "Email address format is invalid."
+FIX_MSG = "Please update it or leave it blank."
+EITHER_MSG = "Either phone or email may be left blank"
+BOTH_MSG = ", but not both."
 
 configure(:development) do 
   require "sinatra/reloader" 
@@ -111,15 +116,9 @@ def valid_email?(email)
   email.match?(/\A\w+([\-.]\w+)*@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
 end
 
-PHONE_MSG = "Phone number format is invalid."
-EMAIL_MSG = "Email address format is invalid."
-FIX_MSG = "Please update it or leave it blank."
-EITHER_MSG = "Either phone or email may be left blank"
-BOTH_MSG = ", but not both."
-
 def check_valid_phone_email_combo(phone, email)
+  # empty triggers invalid to be true, need to seperate those scenarios for better msgs
   if phone.empty? && email.empty? 
-    # both empty
     session[:notifications].push(EITHER_MSG + BOTH_MSG)
   elsif !valid_phone?(phone) && !phone.empty? && !valid_email?(email) && !email.empty? 
     # both invalid not empty
@@ -528,3 +527,4 @@ post "/undo_rename_category" do
   session.delete :just_renamed 
   redirect "/manage"
 end
+

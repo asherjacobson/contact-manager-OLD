@@ -9,3 +9,17 @@ admin:
 - :category_id: 3
   :contacts: {}
   :name: Other
+Hi:
+- :category_id: 1
+  :contacts: {}
+  :name: Friends
+- :category_id: 2
+  :contacts: {}
+  :name: Work
+- :category_id: 3
+  :contacts:
+    2:
+      :name: Bobby
+      :phone: '4253518113'
+      :email: ac1@gmail.com
+  :name: Other

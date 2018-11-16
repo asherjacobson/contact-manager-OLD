@@ -25,7 +25,7 @@
           <% @contacts[@current_user].sort_by { |x| x[:category_id] }.each do |category_hash| %>
             <label>
               <input type="radio" name="new_category" value= <%= category_hash[:category_id] %> <%= checked?(category_hash) %>><%=' ' + category_hash[:name] %>
-            </label>
+          </label>
         <% end %>
         </label>
       </div>

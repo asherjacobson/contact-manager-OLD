@@ -1,3 +1,4 @@
+<!-- layout.erb: applies to all pages -->
 <!doctype html>
 <html lang="en-US">
   <head>
@@ -32,7 +33,7 @@
         <div class="notifications">
           <section>
             <p><%= session[:notifications].join("<br>") %></p>
-              <% session[:messages_shown] = true %>
+            <% session[:messages_shown] = true %>
           </section>
         </div>
       <% end %>
