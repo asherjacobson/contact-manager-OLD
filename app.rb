@@ -117,7 +117,7 @@ def valid_email?(email)
 end
 
 def check_valid_phone_email_combo(phone, email)
-  # empty triggers invalid to be true, need to seperate those scenarios for better msgs
+  # empty triggers invalid to be true, need to seperate those scenarios for clearer logic flow
   if phone.empty? && email.empty? 
     session[:notifications].push(EITHER_MSG + BOTH_MSG)
   elsif !valid_phone?(phone) && !phone.empty? && !valid_email?(email) && !email.empty? 
