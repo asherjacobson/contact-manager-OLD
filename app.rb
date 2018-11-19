@@ -75,7 +75,7 @@ end
 def save_user_data(yaml_object)
   environment = (ENV["RACK_ENV"] == "test" ? "test" : "data")
   data_type = (yaml_object == @contacts ? "contacts" : "credentials")
-  File.open("#{environment}/#{data_type}.yml", 'w') { |file| file.write yaml_object.to_yaml } # no ../  (see load data)
+  File.open("#{environment}/#{data_type}.yml", 'w') { |file| file.write yaml_object.to_yaml } # no ../ unlike load data
 end
 
 def clear_messages 
